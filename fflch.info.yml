@@ -54,5 +54,5 @@ install:
   - webform
 
 themes:
-  - bartik
+  - fflch_aegan
   - seven
