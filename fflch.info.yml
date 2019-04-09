@@ -55,4 +55,5 @@ install:
 
 themes:
   - fflch_aegan
+  - bartik
   - seven
