@@ -1,0 +1,11 @@
+{
+    "name": "fflch/drupal-profile-fflch",
+    "type": "drupal-profile",
+    "authors": [
+        {
+            "name": "thiagogomesverissimo",
+            "email": "thiago.verissimo@usp.br"
+        }
+    ],
+    "require": {}
+}
