@@ -52,8 +52,15 @@ install:
   - google_analytics
   - pathauto
   - webform
+  - theme_permission
+  - editor_advanced_link
+  - editor_file
+
 
 themes:
   - fflch_aegan
+  - fflch_paxton
+  - fflch_nexus
+  - fflch_jethro
   - bartik
   - seven
