@@ -12,6 +12,13 @@ comando para obrigar o site a voltar para estado do momento da instalação:
     cd your-drupal-site
     ./vendor/bin/drush cim --partial --source='profiles/contrib/drupal-profile-fflch/config/mandatory'
 
+### Configurações do editor:
+
+ - Somente o full_html está disponível
+ - Botão com atríbutos do link usando módulo editor_advanced_link
+ - Botão de arquivo usando o módulo editor_file
+ - Tamanho e tipo de fonte usando editor_font
+
 ## TODO:
 
 Formatação de Texto
@@ -19,17 +26,6 @@ Formatação de Texto
  - Habilitar módulo book.
  - Em tipo de conteúdo, apagar “book page”.
  - Habilitar página básica para ser transformada em livro: admin/structure/book/settings
- - Deixar “Full Html” como primeiro na lista:  admin/config/content/formats
- - Dar permissão para o role ldap em full html: admin/config/content/formats/manage/full_html
- - Remover  Authenticated user de admin/config/content/formats/manage/basic_html
- - Instalar e habilitar módulo atributos de  link no ckeditor: editor_advanced_link (Advanced Link)
- - Instalar e habilitar módulo de upload de arquivo no ckeditor: editor_file (D8 Editor file upload)
- - admin/config/content/formats/manage/full_html:  habilitar o botão do editor_file
-   - Habilitar extensões: txt, doc, docx, xls, xlsx, odt, ods, odp, ppt, pptx, pdf
-   - Maximum file size: 5 MB
-   - Instalar e habilitar módulo para tamanho de fonte: ckeditor_font
-   - admin/config/content/formats/manage/full_html:
-   - habilitar os 4 botões de alinhamento, underline, maximizar tela, identação, símbolos e tamanho da fonte
 
 Segurança
 
