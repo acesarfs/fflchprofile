@@ -13,6 +13,7 @@ install:
   - ckeditor
   - color
   - config
+  - config_perms
 #  - comment
   - contextual
 #  - contact
@@ -46,16 +47,26 @@ install:
   - captcha
   - image_captcha
   - smtp
+  - entity
   - entity_clone
   - asset_injector
   - imce
   - google_analytics
   - pathauto
   - webform
+  - webform_ui
+#  - webform_access
+#  - webform_attachment
+#  - webform_image_select
+#  - webform_scheduled_email
   - theme_permission
   - editor_advanced_link
   - editor_file
-
+  - ckeditor_font
+  - conditional_fields
+  - ctools
+  - language
+  - locale
 
 themes:
   - fflch_aegan
