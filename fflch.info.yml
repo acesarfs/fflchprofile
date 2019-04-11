@@ -63,6 +63,7 @@ install:
   - ckeditor_font
   - conditional_fields
   - ctools
+  - collapse_text
   - language
   - locale
 themes:

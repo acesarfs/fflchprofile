@@ -14,17 +14,6 @@ comando para obrigar o site a voltar para estado do momento da instalação:
 
 ## TODO:
 
-Configuração de idiomas
-
- - Habilitar módulos de traduções: language e interface translation
- - Adicionar língua pt-br: admin/config/regional/language/add
- - Colocar português Brasil como língua default
- - Remover o pt-br da língua default: admin/config/regional/language/detection/url
- - Configurar parâmetros de tradução admin/config/regional/translate/settings:
-   - Verificar semanalmente
-   - Drupal translation server and local files
-   - Only overwrite imported translations, customized translations are kept
-
 Formatação de Texto
 
  - Habilitar módulo book.
@@ -132,6 +121,19 @@ Temas disponíveis
  - Jethro + customizar cores via css (azul bebê)
  - +Nexus Theme (candidato) -
  - +Paxton 8.x-1.3 + alterações
+
+Configuração de idiomas
+
+ - Habilitar módulos de traduções: language e interface translation
+ - Adicionar língua pt-br: admin/config/regional/language/add
+ - Colocar português Brasil como língua default
+ - Remover o pt-br da língua default: admin/config/regional/language/detection/url
+ - Configurar parâmetros de tradução admin/config/regional/translate/settings:
+   - Verificar semanalmente
+   - Drupal translation server and local files
+   - Only overwrite imported translations, customized translations are kept
+
+
 
 Bugs conhecidos
 
