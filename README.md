@@ -1,6 +1,18 @@
-Profile do Drupal padrão usado na FFLCH
+## Profile do Drupal padrão usado na FFLCH
 
-### TODO:
+
+## mandatory
+
+A pasta *mandatory* foi criada para forçar que algumas configurações 
+voltem aos valores defaults do nosso profile, para isso, há links na pasta mandatory 
+apontando para alguns arquivos .yml da pasta install.
+Assim, mesmo que usuários tenham alterado essas configurações, pode-se rodar o seguinte
+comando para obrigar o site a voltar para estado do momento da instalação:
+
+    cd your-drupal-site
+    ./vendor/bin/drush cim --partial --source='profiles/contrib/drupal-profile-fflch/config/mandatory'
+
+## TODO:
 
 Configuração de idiomas
 
