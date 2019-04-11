@@ -13,7 +13,6 @@ install:
   - ckeditor
   - color
   - config
-  - config_perms
 #  - comment
   - contextual
 #  - contact
@@ -42,8 +41,12 @@ install:
   - views_ui
   - tour
   - automated_cron
-#### módulos FFLCH
+#### módulos core usados na FFLCH
+  - language
+  - locale
+#### módulos contrib usados na FFLCH
   - senhaunicausp
+  - admin_toolbar
   - captcha
   - image_captcha
   - smtp
@@ -64,8 +67,6 @@ install:
   - conditional_fields
   - ctools
   - collapse_text
-  - language
-  - locale
 themes:
   - fflch_aegan
   - fflch_paxton
