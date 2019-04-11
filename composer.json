@@ -66,12 +66,9 @@
         "drupal/theme_permission": "1.0",
         "drupal/webform": "5.2",
         "fflch/aegan-subtheme": "dev-master",
-        "fflch/drupal-profile-fflch": "dev-master",
         "fflch/jethro-subtheme": "dev-master",
         "fflch/nexus-subtheme": "dev-master",
         "fflch/paxton-subtheme": "dev-master",
-        "npm-asset/ckeditor": "4.11",
-        "npm-asset/datetimepicker": "0.1.38",
-
+        "npm-asset/ckeditor": "4.11"
   }
 }
