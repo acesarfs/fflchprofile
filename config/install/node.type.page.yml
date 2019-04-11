@@ -1,9 +1,9 @@
 langcode: en
 status: true
 dependencies: {  }
-name: 'Basic page'
+name: 'Página Básica'
 type: page
-description: 'Use <em>basic pages</em> for your static content, such as an ''About us'' page.'
+description: 'Use paǵina básica para conteúdos estáticos'
 help: ''
 new_revision: true
 preview_mode: 1

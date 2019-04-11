@@ -55,10 +55,8 @@ install:
   - pathauto
   - webform
   - webform_ui
-#  - webform_access
-#  - webform_attachment
-#  - webform_image_select
-#  - webform_scheduled_email
+  - webform_attachment
+  - webform_scheduled_email
   - theme_permission
   - editor_advanced_link
   - editor_file
@@ -67,7 +65,6 @@ install:
   - ctools
   - language
   - locale
-
 themes:
   - fflch_aegan
   - fflch_paxton
