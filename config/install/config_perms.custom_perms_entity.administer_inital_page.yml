@@ -1,0 +1,6 @@
+langcode: en
+status: true
+dependencies: {  }
+id: administer_inital_page
+label: 'Administer Inital Page'
+path: admin/config/system/site-information
