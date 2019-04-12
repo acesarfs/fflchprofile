@@ -44,6 +44,7 @@ install:
 #### módulos core usados na FFLCH
   - language
   - locale
+#  - book
 #### módulos contrib usados na FFLCH
   - senhaunicausp
   - captcha

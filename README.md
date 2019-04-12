@@ -3,8 +3,8 @@
 
 ## mandatory
 
-A pasta *mandatory* foi criada para forçar que algumas configurações 
-voltem aos valores defaults do nosso profile, para isso, há links na pasta mandatory 
+A pasta *mandatory* foi criada para forçar que algumas configurações
+voltem aos valores defaults do nosso profile, para isso, há links na pasta mandatory
 apontando para alguns arquivos .yml da pasta install.
 Assim, mesmo que usuários tenham alterado essas configurações, pode-se rodar o seguinte
 comando para obrigar o site a voltar para estado do momento da instalação:
@@ -19,19 +19,10 @@ comando para obrigar o site a voltar para estado do momento da instalação:
  - Botão de arquivo usando o módulo editor_file
  - Tamanho e tipo de fonte usando editor_font
 
-## TODO:
-
-Formatação de Texto
-
- - Habilitar módulo book.
- - Em tipo de conteúdo, apagar “book page”.
- - Habilitar página básica para ser transformada em livro: admin/structure/book/settings
-
 Segurança
 
- - somente administradores criarem novas contas
- - (TODO) role fflch pode alterar nome do site
- - (TODO) captcha image em todos forms: 
+ - somente administradores podem criar novas contas
+ - role fflch pode alterar nome do site
 
 Módulos disponíveis na role fflch:
 
@@ -45,15 +36,13 @@ Formato de datas disponíveis:
 
 Gestão de conteúdo
 
- - Clone dos nodes
- - página básica
- - (TODO) conditional fields
- - Url baseada no título
+ - página básica (com url baseada no título)
+ - clone dos nodes
+ - conditional fields
  - webform
  - blocos
  - menus
  - views
- - (TODO) gestão de imagens com IMCE
 
 Temas disponíveis:
 
@@ -61,5 +50,3 @@ Temas disponíveis:
  - fflch_jethro
  - fflch_nexus
  - fflch_paxton
-
-

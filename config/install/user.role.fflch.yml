@@ -6,7 +6,7 @@ label: FFLCH
 weight: 3
 is_admin: null
 permissions:
-# Aparência da administração mais agradável 
+# Aparência da administração mais agradável
   - 'access toolbar'
   - 'access administration pages'
   - 'view the administration theme'
@@ -19,6 +19,10 @@ permissions:
   - 'administer nodes'
   - 'administer content types'
 #  - 'administer node form display'
+# Campos condicionais
+  - 'delete conditional fields'
+  - 'edit conditional fields'
+  - 'view conditional fields'
 # Configurações globais liberadas
   - 'Administer Inital Page'
   - 'create url aliases'
@@ -49,4 +53,3 @@ permissions:
 # Revisões
   - 'revert all revisions'
   - 'view all revisions'
-
