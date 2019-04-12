@@ -1,0 +1,8 @@
+uuid: f1df6719-434b-440d-8d08-a48222b867ac
+langcode: pt-br
+status: true
+dependencies: {  }
+id: extenso
+label: extenso (ex. Sexta-feira, 12 de Abril de 2010)
+locked: false
+pattern: 'l, j \d\e F \d\e Y'

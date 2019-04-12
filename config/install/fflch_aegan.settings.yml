@@ -1,0 +1,50 @@
+socialicon_count: '5'
+slideshow_count: '3'
+slideshow_animation: slide
+slideshow_display: 1
+slideshow_slide_speed: '7000'
+slideshow_animation_speed: '600'
+aegan_color: red
+langcode: pt-br
+features:
+  node_user_picture: 0
+  comment_user_picture: 0
+  comment_user_verification: 0
+  favicon: 0
+logo:
+  use_default: 1
+favicon:
+  use_default: 1
+social_class_1: ''
+social_url_1: ''
+social_class_2: ''
+social_url_2: ''
+social_class_3: ''
+social_url_3: ''
+social_class_4: ''
+social_url_4: ''
+social_class_5: ''
+social_url_5: ''
+slideshow_style: ''
+slide_description_1: 'Este site ainda está em construção'
+slide_image_1:
+  - '26'
+slide_url_1: 'https://fflch.usp.br/'
+slide_description_2: 'Exemplo'
+slide_image_2:
+  - '30'
+slide_url_2: 'https://www.revistas.usp.br/'
+slide_description_3: ''
+slide_image_3:
+  - '32'
+slide_url_3: 'http://fflch.usp.br/'
+slide_description_4: ''
+slide_image_4: {  }
+slide_url_4: ''
+slide_description_5: ''
+slide_image_5: {  }
+slide_url_5: ''
+slideshow_visiblity: ''
+slide_description_6: ''
+slide_image_6: {  }
+slide_url_6: ''

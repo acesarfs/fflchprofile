@@ -46,7 +46,6 @@ install:
   - locale
 #### módulos contrib usados na FFLCH
   - senhaunicausp
-  - admin_toolbar
   - captcha
   - image_captcha
   - smtp

@@ -1,0 +1,7 @@
+allow_insecure_uploads: false
+default_scheme: public
+path:
+  temporary: sites/ceru.fflch.usp.br/private/temp
+  private: sites/ceru.fflch.usp.br/private/files
+temporary_maximum_age: 21600
+langcode: pt-br
