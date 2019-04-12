@@ -1,12 +1,9 @@
-uuid: e43947a2-3c5d-442f-8556-edf18d65ed24
 langcode: pt-br
 status: true
 dependencies:
   module:
     - collapse_text
     - editor
-_core:
-  default_config_hash: hewPmBgni9jlDK_IjLxUx1HsTbinK-hdl0lOwjbteIY
 name: 'HTML completo'
 format: full_html
 weight: -10

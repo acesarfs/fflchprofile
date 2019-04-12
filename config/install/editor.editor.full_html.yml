@@ -1,4 +1,3 @@
-uuid: 507212ff-c70e-4ed8-b4f0-67be808b9147
 langcode: pt-br
 status: true
 dependencies:
@@ -14,8 +13,6 @@ third_party_settings:
     directory: inline-files
     extensions: 'txt doc docx xls xlsx odt ods odp ppt pptx pdf'
     max_size: '10 MB'
-_core:
-  default_config_hash: 967ijj7p6i7rwrYl7r08WQFeCY_c23YAh0h8u-w_CXM
 format: full_html
 editor: ckeditor
 settings:
