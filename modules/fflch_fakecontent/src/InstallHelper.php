@@ -101,15 +101,12 @@ class InstallHelper implements ContainerInjectionInterface {
       // Prepare content.
       $values = [
         'type' => 'page',
-        'title' => 'Sobre a FFLCH',
+        'title' => 'FFLCH',
         'moderation_state' => 'published',
       ];
 
       // Set Body Field.
       $values['body'] = [['value' => $body, 'format' => 'full_html']];
-        
-      // Set node alias if exists.
-      $values['path'] = [['alias' => '/sobre-a-fflch']];
      
       // Set article author.
       $values['uid'] = 1;
