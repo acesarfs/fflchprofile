@@ -81,9 +81,8 @@ class InstallHelper implements ContainerInjectionInterface {
    * Imports default contents.
    */
   public function importContent() {
-    $this->
-      ->importPages()
-      ->importBlockContent();
+    $this->importPages();
+      //->importBlockContent();
   }
 
   /**
@@ -92,43 +91,37 @@ class InstallHelper implements ContainerInjectionInterface {
    * @return $this
    */
   protected function importPages() {
-    /*
-    if (($handle = fopen($this->moduleHandler->getModule('fflch_fakecontent')->getPath() . '/default_content/pages.csv', "r")) !== FALSE) {
-      $headers = fgetcsv($handle);
+
+    $file = $this->moduleHandler->getModule('fflch_fakecontent')->getPath() .'/default_content/frontpage.html';
+
+    if (file_exists($file)) {
+      $body = file_get_contents($file);
       $uuids = [];
-      while (($data = fgetcsv($handle)) !== FALSE) {
-        $data = array_combine($headers, $data);
 
-        // Prepare content.
-        $values = [
-          'type' => 'page',
-          'title' => $data['title'],
-          'moderation_state' => 'published',
-        ];
-        // Fields mapping starts.
-        // Set Body Field.
-        if (!empty($data['body'])) {
-          $values['body'] = [['value' => $data['body'], 'format' => 'basic_html']];
-        }
-        // Set node alias if exists.
-        if (!empty($data['slug'])) {
-          $values['path'] = [['alias' => '/' . $data['slug']]];
-        }
-        // Set article author.
-        if (!empty($data['author'])) {
-          $values['uid'] = $this->getUser($data['author']);
-        }
+      // Prepare content.
+      $values = [
+        'type' => 'page',
+        'title' => 'Sobre a FFLCH',
+        'moderation_state' => 'published',
+      ];
 
-        // Create Node.
-        $node = $this->entityTypeManager->getStorage('node')->create($values);
-        $node->save();
-        $uuids[$node->uuid()] = 'node';
-      }
+      // Set Body Field.
+      $values['body'] = [['value' => $body, 'format' => 'full_html']];
+        
+      // Set node alias if exists.
+      $values['path'] = [['alias' => '/sobre-a-fflch']];
+     
+      // Set article author.
+      $values['uid'] = 1;
+       
+      // Create Node.
+      $node = $this->entityTypeManager->getStorage('node')->create($values);
+      $node->save();
+      $uuids[$node->uuid()] = 'node';
+      
       $this->storeCreatedContentUuids($uuids);
-      fclose($handle);
     }
     return $this;
-    */
   }
 
   /**
@@ -232,6 +225,7 @@ class InstallHelper implements ContainerInjectionInterface {
     }
     return $this;
     */
+    return false;
   }
 
   /**
@@ -240,7 +234,6 @@ class InstallHelper implements ContainerInjectionInterface {
    * @return $this
    */
   public function deleteImportedContent() {
-    /*
     $uuids = $this->state->get('fflch_fakecontent_uuids', []);
     $by_entity_type = array_reduce(array_keys($uuids), function ($carry, $uuid) use ($uuids) {
       $entity_type_id = $uuids[$uuid];
@@ -253,7 +246,6 @@ class InstallHelper implements ContainerInjectionInterface {
       $storage->delete($entities);
     }
     return $this;
-    */
   }
 
 
@@ -287,10 +279,9 @@ class InstallHelper implements ContainerInjectionInterface {
    *   type.
    */
   protected function storeCreatedContentUuids(array $uuids) {
-    /*
     $uuids = $this->state->get('fflch_fakecontent_uuids', []) + $uuids;
     $this->state->set('fflch_fakecontent_uuids', $uuids);
-    */
+    
   }
 
   /**
