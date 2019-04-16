@@ -45,9 +45,9 @@ permissions:
 # Temas liberados
   - 'administer themes'
   - 'administer themes fflch_aegan'
-  - 'administer themes fflch_jethro'
-  - 'administer themes fflch_nexus'
-  - 'administer themes fflch_paxton'
+#  - 'administer themes fflch_jethro'
+#  - 'administer themes fflch_nexus'
+#  - 'administer themes fflch_paxton'
 # webform
   - 'administer webform'
 # Revisões

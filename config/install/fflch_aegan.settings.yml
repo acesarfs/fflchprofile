@@ -1,10 +1,10 @@
 socialicon_count: '5'
 slideshow_count: '3'
 slideshow_animation: slide
-slideshow_display: 1
+slideshow_display: 0
 slideshow_slide_speed: '7000'
 slideshow_animation_speed: '600'
-aegan_color: red
+aegan_color: defaulft
 langcode: pt-br
 features:
   node_user_picture: 0
