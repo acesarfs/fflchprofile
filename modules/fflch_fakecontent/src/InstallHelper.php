@@ -81,8 +81,8 @@ class InstallHelper implements ContainerInjectionInterface {
    * Imports default contents.
    */
   public function importContent() {
-    $this->importPages();
-      //->importBlockContent();
+    $this->importPages()
+      ->importBlockContent();
   }
 
   /**
@@ -92,7 +92,9 @@ class InstallHelper implements ContainerInjectionInterface {
    */
   protected function importPages() {
 
-    $file = $this->moduleHandler->getModule('fflch_fakecontent')->getPath() .'/default_content/frontpage.html';
+    $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
+    $this->createFileEntity($module_path . '/default_content/fflch.jpg');
+    $file = $module_path .'/default_content/frontpage.html';
 
     if (file_exists($file)) {
       $body = file_get_contents($file);
@@ -101,7 +103,7 @@ class InstallHelper implements ContainerInjectionInterface {
       // Prepare content.
       $values = [
         'type' => 'page',
-        'title' => 'FFLCH',
+        'title' => 'Sobre',
         'moderation_state' => 'published',
       ];
 
@@ -127,102 +129,31 @@ class InstallHelper implements ContainerInjectionInterface {
    * @return $this
    */
   protected function importBlockContent() {
-    /*
     $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
-    $block_content_entities = [
-      'umami_home_banner' => [
+    $this->createFileEntity($module_path . '/default_content/logo.png');
+    $this->createFileEntity($module_path . '/default_content/usp.png');
+
+    $file = $module_path .'/default_content/block.logo.html';
+    $body = file_get_contents($file);
+
+    $block = [
         'uuid' => '9aadf4a1-ded6-4017-a10d-a5e043396edf',
-        'info' => 'Umami Home Banner',
-        'type' => 'banner_block',
-        'field_title' => [
-          'value' => 'Super easy vegetarian pasta bake',
-        ],
-        'field_content_link' => [
-          'uri' => 'internal:' . call_user_func(function () {
-            $nodes = $this->entityTypeManager->getStorage('node')->loadByProperties(['title' => 'Super easy vegetarian pasta bake']);
-            $node = reset($nodes);
-            return $this->aliasManager->getAliasByPath('/node/' . $node->id());
-          }),
-          'title' => 'View recipe',
-        ],
-        'field_summary' => [
-          'value' => 'A wholesome pasta bake is the ultimate comfort food. This delicious bake is super quick to prepare and an ideal midweek meal for all the family.',
-        ],
-        'field_banner_image' => [
-          'target_id' => $this->createFileEntity($module_path . '/default_content/images/veggie-pasta-bake-hero-umami.jpg'),
-          'alt' => 'Mouth watering vegetarian pasta bake with rich tomato sauce and cheese toppings',
-        ],
-      ],
-      'umami_recipes_banner' => [
-        'uuid' => '4c7d58a3-a45d-412d-9068-259c57e40541',
-        'info' => 'Umami Recipes Banner',
-        'type' => 'banner_block',
-        'field_title' => [
-          'value' => 'Vegan chocolate and nut brownies',
-        ],
-        'field_content_link' => [
-          'uri' => 'internal:' . call_user_func(function () {
-            $nodes = $this->entityTypeManager->getStorage('node')->loadByProperties(['title' => 'Vegan chocolate and nut brownies']);
-            $node = reset($nodes);
-            return $this->aliasManager->getAliasByPath('/node/' . $node->id());
-          }),
-          'title' => 'View recipe',
-        ],
-        'field_summary' => [
-          'value' => 'These sumptuous brownies should be gooey on the inside and crisp on the outside. A perfect indulgence!',
-        ],
-        'field_banner_image' => [
-          'target_id' => $this->createFileEntity($module_path . '/default_content/images/vegan-brownies-hero-umami.jpg'),
-          'alt' => 'A stack of chocolate and pecan brownies, sprinkled with pecan crumbs and crushed walnut, fresh out of the oven',
-        ],
-      ],
-      'umami_disclaimer' => [
-        'uuid' => '9b4dcd67-99f3-48d0-93c9-2c46648b29de',
-        'info' => 'Umami disclaimer',
-        'type' => 'disclaimer_block',
-        'field_disclaimer' => [
-          'value' => '<strong>Umami Magazine & Umami Publications</strong> is a fictional magazine and publisher for illustrative purposes only.',
-          'format' => 'basic_html',
-        ],
-        'field_copyright' => [
-          'value' => '&copy; 2018 Terms & Conditions',
-          'format' => 'basic_html',
-        ],
-      ],
-      'umami_footer_promo' => [
-        'uuid' => '924ab293-8f5f-45a1-9c7f-2423ae61a241',
-        'info' => 'Umami footer promo',
-        'type' => 'footer_promo_block',
-        'field_title' => [
-          'value' => 'Umami Food Magazine',
-        ],
-        'field_summary' => [
-          'value' => 'Skills and know-how. Magazine exclusive articles, recipes and plenty of reasons to get your copy today.',
-        ],
-        'field_content_link' => [
-          'uri' => 'internal:' . call_user_func(function () {
-            $nodes = $this->entityTypeManager->getStorage('node')->loadByProperties(['title' => 'About Umami']);
-            $node = reset($nodes);
-            return $this->aliasManager->getAliasByPath('/node/' . $node->id());
-          }),
-          'title' => 'Find out more',
-        ],
-        'field_promo_image' => [
-          'target_id' => $this->createFileEntity($module_path . '/default_content/images/umami-bundle.png'),
-          'alt' => '3 issue bundle of the Umami food magazine',
-        ],
-      ],
+        'info' => 'logo',
+        'type' => 'basic',
+        'title' => [
+          'value' => 'logo',
+         ],
+        'body' => [
+          'value' => $body,
+          'format' => 'full_html'
+         ]
     ];
 
     // Create block content.
-    foreach ($block_content_entities as $values) {
-      $block_content = $this->entityTypeManager->getStorage('block_content')->create($values);
-      $block_content->save();
-      $this->storeCreatedContentUuids([$block_content->uuid() => 'block_content']);
-    }
+    $block_content = $this->entityTypeManager->getStorage('block_content')->create($block);
+    $block_content->save();
+    $this->storeCreatedContentUuids([$block_content->uuid() => 'block_content']);
     return $this;
-    */
-    return false;
   }
 
   /**
@@ -256,7 +187,6 @@ class InstallHelper implements ContainerInjectionInterface {
    *   File ID.
    */
   protected function createFileEntity($path) {
-    /*
     $uri = $this->fileUnmanagedCopy($path);
     $file = $this->entityTypeManager->getStorage('file')->create([
       'uri' => $uri,
@@ -265,7 +195,6 @@ class InstallHelper implements ContainerInjectionInterface {
     $file->save();
     $this->storeCreatedContentUuids([$file->uuid() => 'file']);
     return $file->id();
-    */
   }
 
   /**
@@ -291,10 +220,8 @@ class InstallHelper implements ContainerInjectionInterface {
    *   The path to the new file, or FALSE in the event of an error.
    */
   protected function fileUnmanagedCopy($path) {
-    /*
     $filename = basename($path);
     return file_unmanaged_copy($path, 'public://' . $filename, FILE_EXISTS_REPLACE);
-    */
   }
 
 }

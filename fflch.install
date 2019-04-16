@@ -74,6 +74,5 @@ function fflch_install() {
 
   // fflch fake content
   \Drupal::service('module_installer')->install(['fflch_fakecontent'], TRUE);
-
-  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/fflch')->save(TRUE);
+  \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/sobre')->save(TRUE);
 }
