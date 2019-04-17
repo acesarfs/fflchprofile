@@ -135,8 +135,8 @@ class InstallHelper implements ContainerInjectionInterface {
 
     $file = $module_path .'/default_content/block.logo.html';
     $body = file_get_contents($file);
-    $body = str_replace("__logo_image__", $logo_image, $body)
-    $body = str_replace("__usp_image__", $usp_image, $body)
+    $body = str_replace("__logo_image__", $logo_image, $body);
+    $body = str_replace("__usp_image__", $usp_image, $body);
 
     $block = [
         'uuid' => '9aadf4a1-ded6-4017-a10d-a5e043396edf',
