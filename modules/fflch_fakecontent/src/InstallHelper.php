@@ -93,33 +93,33 @@ class InstallHelper implements ContainerInjectionInterface {
   protected function importPages() {
 
     $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
-    $this->createFileEntity($module_path . '/default_content/fflch.jpg');
+    $fflch_image = $this->createFileEntity($module_path . '/default_content/fflch.jpg');
+
     $file = $module_path .'/default_content/frontpage.html';
+    $body = file_get_contents($file);
+    $body = str_replace("__fflch_image__", $fflch_image, $body);
+    $uuids = [];
 
-    if (file_exists($file)) {
-      $body = file_get_contents($file);
-      $uuids = [];
-
-      // Prepare content.
-      $values = [
+    // Prepare content.
+    $values = [
         'type' => 'page',
         'title' => 'Sobre',
         'moderation_state' => 'published',
-      ];
+    ];
 
-      // Set Body Field.
-      $values['body'] = [['value' => $body, 'format' => 'full_html']];
+    // Set Body Field.
+    $values['body'] = [['value' => $body, 'format' => 'full_html']];
      
-      // Set article author.
-      $values['uid'] = 1;
+    // Set article author.
+    $values['uid'] = 1;
        
-      // Create Node.
-      $node = $this->entityTypeManager->getStorage('node')->create($values);
-      $node->save();
-      $uuids[$node->uuid()] = 'node';
+    // Create Node.
+    $node = $this->entityTypeManager->getStorage('node')->create($values);
+    $node->save();
+    $uuids[$node->uuid()] = 'node';
       
-      $this->storeCreatedContentUuids($uuids);
-    }
+    $this->storeCreatedContentUuids($uuids);
+    
     return $this;
   }
 
@@ -130,11 +130,13 @@ class InstallHelper implements ContainerInjectionInterface {
    */
   protected function importBlockContent() {
     $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
-    $this->createFileEntity($module_path . '/default_content/logo.png');
-    $this->createFileEntity($module_path . '/default_content/usp.png');
+    $logo_image = $this->createFileEntity($module_path . '/default_content/logo.png');
+    $usp_image = $this->createFileEntity($module_path . '/default_content/usp.png');
 
     $file = $module_path .'/default_content/block.logo.html';
     $body = file_get_contents($file);
+    $body = str_replace("__logo_image__", $logo_image, $body)
+    $body = str_replace("__usp_image__", $usp_image, $body)
 
     $block = [
         'uuid' => '9aadf4a1-ded6-4017-a10d-a5e043396edf',
@@ -194,7 +196,8 @@ class InstallHelper implements ContainerInjectionInterface {
     ]);
     $file->save();
     $this->storeCreatedContentUuids([$file->uuid() => 'file']);
-    return $file->id();
+    //return $file->id();
+    return file_url_transform_relative(file_create_url($file->getFileUri()));
   }
 
   /**
