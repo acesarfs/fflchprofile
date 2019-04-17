@@ -6,8 +6,11 @@ use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\State\StateInterface;
 
-class LanguageHelper {
+class LanguageHelper implements ContainerInjectionInterface {
 
   /**
    * The config.factory service.
@@ -33,19 +36,41 @@ class LanguageHelper {
   public function __construct(
     ConfigFactoryInterface $configFactory,
     ModuleHandlerInterface $moduleHandler,
-    ConfigurableLanguageManagerInterface $languageManager
+    ConfigurableLanguageManagerInterface $languageManager,
+    StateInterface $state
   ) {
     $this->configFactory = $configFactory;
-    $this->languageManager = $languageManager;
     $this->moduleHandler = $moduleHandler;
+    $this->languageManager = $languageManager;
+    $this->state = $state;
   }
 
-public function doConfig(){
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('module_handler'),
+      $container->get('language_manager'),
+      $container->get('state')
+    );
+  }
 
-  $langcodes = ['en','pt-br','es'];
+  // copied form drush_languages, class: DrushLanguageCliService
+  public function doConfig(){
 
-  foreach ($langcodes as $langcode) {
+    $langcodes = ['en','pt-br','es'];
    
+    foreach ($langcodes as $langcode) {
+
+      $languages = $this->languageManager->getLanguages();
+
+      // Do not re-add existing languages.
+      if (isset($languages[$langcode])) {
+        continue;
+      }
+
       $language = ConfigurableLanguage::createFromLangcode($langcode);
       $language->save();
 
@@ -60,8 +85,13 @@ public function doConfig(){
           $batch['progressive'] = FALSE;
 
           // Process the batch.
-          drush_backend_batch_process();
+         \Drupal::service('batch.storage')->create($batch);
+          _batch_process();
         }
       }
+    }
+    $this->configFactory->getEditable('system.site')->set('default_langcode', 'pt-br')->save();
+    $this->languageManager->reset();
   }
+
 }
