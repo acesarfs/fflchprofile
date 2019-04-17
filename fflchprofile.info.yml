@@ -70,8 +70,8 @@ install:
   - config_perms
 themes:
   - fflch_aegan
-  - fflch_paxton
-  - fflch_nexus
-  - fflch_jethro
+#  - fflch_paxton
+#  - fflch_nexus
+#  - fflch_jethro
   - bartik
   - seven

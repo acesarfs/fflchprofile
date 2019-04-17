@@ -31,6 +31,7 @@ function fflchprofile_install() {
   // Assign user 1 the "administrator" role.
   $user = User::load(1);
   $user->roles[] = 'administrator';
+  $user->setUsername('fflch');
   $user->save();
 
   // We install some menu links, so we have to rebuild the router, to ensure the

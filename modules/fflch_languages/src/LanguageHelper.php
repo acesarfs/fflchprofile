@@ -76,6 +76,7 @@ class LanguageHelper implements ContainerInjectionInterface {
     }
    
     $this->configFactory->getEditable('system.site')->set('default_langcode', 'pt-br')->save();
+    $this->configFactory->getEditable('language.negotiation')->set('url.prefixes.pt-br', '')->save();
     $this->languageManager->reset();
   }
 
