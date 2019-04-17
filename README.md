@@ -10,7 +10,7 @@ Assim, mesmo que usuários tenham alterado essas configurações, pode-se rodar 
 comando para obrigar o site a voltar para estado do momento da instalação:
 
     cd your-drupal-site
-    ./vendor/bin/drush cim --partial --source='profiles/contrib/drupal-profile-fflch/config/mandatory'
+    ./vendor/bin/drush cim --partial --source='profiles/contrib/fflchprofile/config/mandatory'
 
 ### Configurações do editor:
 
