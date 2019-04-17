@@ -1,0 +1,14 @@
+{
+  "name": "drupal/fflch_languages",
+  "type": "drupal-module",
+  "description": "fflch languages",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/fflch_languages",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/fflch_languages",
+    "source": "http://cgit.drupalcode.org/fflch_languages"
+  },
+  "require": { }
+}

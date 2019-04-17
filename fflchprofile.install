@@ -73,6 +73,8 @@ function fflchprofile_install() {
   \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
 
   // fflch fake content
+  \Drupal::service('module_installer')->install(['fflch_languages'], TRUE);
   \Drupal::service('module_installer')->install(['fflch_fakecontent'], TRUE);
+  \Drupal::service('module_installer')->uninstall(['update'], TRUE);
   \Drupal::configFactory()->getEditable('system.site')->set('page.front', '/sobre')->save(TRUE);
 }
