@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\fflch_languages;
+namespace Drupal\fflch_configs;
 
 use Drupal\language\ConfigurableLanguageManagerInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
@@ -10,7 +10,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\State\StateInterface;
 
-class LanguageHelper implements ContainerInjectionInterface {
+class Configs implements ContainerInjectionInterface {
 
   /**
    * The config.factory service.
@@ -61,6 +61,7 @@ class LanguageHelper implements ContainerInjectionInterface {
   public function doConfig(){
 
     $langcodes = ['en','pt-br','es','fr'];
+    //$langcodes = ['en','pt-br'];
     foreach ($langcodes as $langcode) {
 
       $languages = $this->languageManager->getLanguages();
@@ -74,7 +75,7 @@ class LanguageHelper implements ContainerInjectionInterface {
       $language->save();
 
     }
-   
+
     $this->configFactory->getEditable('system.site')->set('default_langcode', 'pt-br')->save();
     $this->configFactory->getEditable('language.negotiation')->set('url.prefixes.pt-br', '')->save();
     $this->languageManager->reset();

@@ -5,13 +5,13 @@
  * Install, update and uninstall functions for the module.
  */
 
-use Drupal\fflch_languages\LanguageHelper;
+use Drupal\fflch_configs\Configs;
 
 /**
  * Implements hook_install().
  */
-function fflch_languages_install() {
+function fflch_configs_install() {
   if (!\Drupal::service('config.installer')->isSyncing()) {
-    \Drupal::classResolver(LanguageHelper::class)->doConfig();
+    \Drupal::classResolver(Configs::class)->doConfig();
   }
 }

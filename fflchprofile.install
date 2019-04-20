@@ -31,7 +31,7 @@ function fflchprofile_install() {
   // Assign user 1 the "administrator" role.
   $user = User::load(1);
   $user->roles[] = 'administrator';
-  $user->setUsername('fflch');
+  $user->setUsername('fflch'); // not working
   $user->save();
 
   // We install some menu links, so we have to rebuild the router, to ensure the
@@ -73,8 +73,8 @@ function fflchprofile_install() {
   // Enable the admin theme.
   \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
 
-  // fflch languages
-  \Drupal::service('module_installer')->install(['fflch_languages'], TRUE);
+  // fflch configs
+  \Drupal::service('module_installer')->install(['fflch_configs'], TRUE);
 
   // fflch fake content
   \Drupal::service('module_installer')->install(['fflch_fakecontent'], TRUE);
