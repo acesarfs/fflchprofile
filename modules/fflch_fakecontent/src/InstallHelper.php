@@ -9,6 +9,7 @@ use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Defines a helper class for importing default content.
@@ -81,8 +82,21 @@ class InstallHelper implements ContainerInjectionInterface {
    * Imports default contents.
    */
   public function importContent() {
-    $this->importPages()
-      ->importBlockContent();
+    $this->importPages();
+    $this->importBlockContent();
+
+    // defina a página importada como inicial
+    $system_site = \Drupal::configFactory()->getEditable('system.site');
+    $system_site->set('page.front', '/sobre')->save(TRUE);
+
+    // Cria um botão de exemplo no menu
+    $menu_link = MenuLinkContent::create([
+      'title' => "Página Inicial",
+      'link' => ['uri' => 'internal:/node/1'],
+      'menu_name' => 'main',
+      'expanded' => TRUE,
+    ]);
+    $menu_link->save();
   }
 
   /**
