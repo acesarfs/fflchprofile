@@ -1,40 +1,49 @@
-## Profile do Drupal padrão usado na FFLCH
+# Profile Drupal usado na FFLCH
 
+## Adicionando novas configurações
 
-## mandatory
+Há dois tipos de configurações: instalação e sincronização.
+As configurações de instalação são carregadas assim que o site é criado
+e estão definidas em arquivos *.yml* no diretório *fflchprofile/config/install*.
+As configurações de sinconização são rodadas sempre no cron e estão
+definidas na classe *Configs.php* do módulo *fflch_configs*.
 
-A pasta *mandatory* foi criada para forçar que algumas configurações
-voltem aos valores defaults do nosso profile, para isso, há links na pasta mandatory
-apontando para alguns arquivos .yml da pasta install.
-Assim, mesmo que usuários tenham alterado essas configurações, pode-se rodar o seguinte
-comando para obrigar o site a voltar para estado do momento da instalação:
+Passos para fazer modificações no site modelo:
 
-    cd your-drupal-site
-    ./vendor/bin/drush cim --partial --source='profiles/contrib/fflchprofile/config/mandatory'
+ - Identificar os arquivos yml que executam a modificação
+ - Salvar e commitar esses arquivos na pasta *fflchprofile/config/install* para aplicação em novos sites 
+ - Nos sites existentes, deve-se aplicar retroativamente as novas configurações salvando os arquivos *.yml* correspondentes em um diretório, ex. web/aplicando, e executando:
 
-### Configurações do editor:
+    ./vendor/bin/drush cim --partial --source='aplicando'
+
+<b>Atenção</b>: Delete a pasta web/aplicando depois de aplicado. Não rodamos o comando acima diretamente na pasta *fflchprofile/config/install*, pois há configurações de início que não queremos que retornem, por exemplo, as posições dos blocos do site modelo.
+ - Por fim, se for necessário, crie um método PHP em *Configs.php* para garantir o estado dessa configuração
+
+## Configurações:
+
+### Editor de texto:
 
  - Somente o full_html está disponível
  - Botão com atríbutos do link usando módulo editor_advanced_link
  - Botão de arquivo usando o módulo editor_file
  - Tamanho e tipo de fonte usando editor_font
 
-Segurança
+### Segurança
 
  - somente administradores podem criar novas contas
  - role fflch pode alterar nome do site
 
-Módulos disponíveis na role fflch:
+### Módulos disponíveis na role fflch:
 
  - Google Analytics
  - Assets
 
-Formato de datas disponíveis:
+### Formato de datas disponíveis:
 
  - dia/mes/ano: d/m/Y
  - extenso: l, j \d\e F \d\e Y
 
-Gestão de conteúdo
+### Gestão de conteúdo
 
  - página básica (com url baseada no título)
  - clone dos nodes
@@ -44,12 +53,9 @@ Gestão de conteúdo
  - menus
  - views
 
-Temas disponíveis:
+### Temas disponíveis:
 
  - fflch_aegan
- - fflch_jethro
- - fflch_nexus
- - fflch_paxton
 
 ## Roteiro para treinamento baseado no profile
 
