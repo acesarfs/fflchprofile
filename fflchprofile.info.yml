@@ -68,6 +68,7 @@ install:
   - ctools
   - collapse_text
   - config_perms
+  - cpf
 themes:
   - fflch_aegan
 #  - fflch_paxton
