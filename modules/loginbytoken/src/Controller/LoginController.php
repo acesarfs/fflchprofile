@@ -21,7 +21,7 @@ class LoginController extends ControllerBase {
     $site = $request->server->get('HTTP_HOST');
 
     $client = new Client([
-        'base_uri' => 'http://localhost:8000/',
+        'base_uri' => 'https://sites.fflch.usp.br/',
     ]);
     
     $secretkey = file_get_contents("/var/aegir/.secretkey.txt");
