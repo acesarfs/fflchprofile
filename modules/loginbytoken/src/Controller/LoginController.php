@@ -23,12 +23,13 @@ class LoginController extends ControllerBase {
     $client = new Client([
         'base_uri' => 'http://localhost:8000/',
     ]);
+    
+    $secretkey = file_get_contents("/var/aegir/.secretkey.txt");
 
     $res = $client->request('GET',"/check/",
-        ['query' => ['secretkey' => '123',
+        ['query' => ['secretkey'  => $secretkey,
                      'codpes'     => $codpes,
-//                     'site'       => $site,
-                     'site'       => 'local1.fflch.usp.br',
+                     'site'       => $site,
                      'temp_token' => $temp_token,
         ]]);
 
