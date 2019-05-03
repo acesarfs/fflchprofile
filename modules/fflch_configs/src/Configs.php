@@ -51,8 +51,7 @@ class Configs implements ContainerInjectionInterface {
     $this->captcha();
     $this->user1();
     $this->permissions();
-    //$this->senhaunicausp();
-    //$this->smtp();
+    $this->smtp();
   }
 
   private function idiomas(){
@@ -82,31 +81,14 @@ class Configs implements ContainerInjectionInterface {
     $captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
   }
 
-  private function senhaunicausp(){
-    $senhaunicausp = $this->configFactory->getEditable('senhaunicausp.config');
-/*
-key_id: fflch_sti
-secret_key: __senha_unica_secret_key__
-callback_id: '233'
-numeros_usp: "2517070,\r\n3426504,\r\n5385361"
-default_role: fflch
-numeros_usp_service: 0
-endpoint: ''
-apikey: ''
-*/
-  }
-
   private function smtp(){
+    $senha = file_get_contents("/var/aegir/.email.txt");
     $smtp_settings = $this->configFactory->getEditable('smtp.settings');
-/*
-    smtp_on: true
-    smtp_host: smtp.gmail.com
-smtp_hostbackup: ''
-smtp_port: '587'
-smtp_protocol: tls
-smtp_username: noreply.fflch@usp.br
-smtp_password: '__senha_noreply__'
-*/
+    $smtp_settings>set('smtp_username', 'noreply.fflch@usp.br')->save();
+    $smtp_settings>set('smtp_password', $senha)->save();
+    $smtp_settings>set('smtp_host', 'smtp.gmail.com')->save();
+    $smtp_settings>set('smtp_port', '587')->save();
+    $smtp_settings>set('smtp_protocol', 'tls')->save();
   }
 
   private function user1(){
