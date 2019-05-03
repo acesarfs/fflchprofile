@@ -92,8 +92,10 @@ class Configs implements ContainerInjectionInterface {
   }
 
   private function user1(){
+    $senha = file_get_contents("/var/aegir/.user1.txt");
     $user = \Drupal\user\Entity\User::load(1);
     $user->setUsername('fflch');
+    $user->setPassword($senha);
     $user->save();
   }
 
