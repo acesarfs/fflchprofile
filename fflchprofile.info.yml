@@ -46,7 +46,6 @@ install:
   - locale
   - book
 #### módulos contrib usados na FFLCH
-  - senhaunicausp
   - captcha
   - image_captcha
   - smtp
@@ -69,6 +68,8 @@ install:
   - collapse_text
   - config_perms
   - cpf
+#### nossos módulos
+  - loginbytoken
 themes:
   - fflch_aegan
 #  - fflch_paxton
