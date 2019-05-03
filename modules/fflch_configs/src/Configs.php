@@ -3,6 +3,7 @@
 namespace Drupal\fflch_configs;
 
 use Drupal\language\ConfigurableLanguageManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -23,7 +24,8 @@ class Configs implements ContainerInjectionInterface {
   public function __construct(
     ConfigFactoryInterface $configFactory,
     ModuleHandlerInterface $moduleHandler,
-    ConfigurableLanguageManagerInterface $languageManager,
+    LanguageManagerInterface $languageManager,
+#    ConfigurableLanguageManagerInterface $languageManager,
     StateInterface $state
   ) {
     $this->configFactory = $configFactory;
@@ -46,12 +48,12 @@ class Configs implements ContainerInjectionInterface {
    
   /*******************************************************************/
   /** Daqui para baixo estão as configurações obrigatórias na FFLCH **/
-  public function doConfig(){
+  public function doConfig() {
     $this->idiomas();
     $this->captcha();
     $this->user1();
     $this->permissions();
-    $this->smtp();
+#    $this->smtp();
   }
 
   private function idiomas(){
@@ -61,8 +63,9 @@ class Configs implements ContainerInjectionInterface {
       if (isset($languages[$langcode])) {
         continue;
       }
-      $language = ConfigurableLanguage::createFromLangcode($langcode);
-      $language->save();
+      // TODO: Esse parte não está funcionando
+      //$language = ConfigurableLanguage::createFromLangcode($langcode);
+      //$language->save();
     }
 
     // pt-br como default
@@ -76,26 +79,36 @@ class Configs implements ContainerInjectionInterface {
     $this->languageManager->reset();
   }
 
-  private function captcha(){
+  private function captcha() {
     $captcha_settings = $this->configFactory->getEditable('captcha.settings');
     $captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
   }
 
-  private function smtp(){
-    $senha = file_get_contents("/var/aegir/.email.txt");
+  private function smtp() {
+    
     $smtp_settings = $this->configFactory->getEditable('smtp.settings');
-    $smtp_settings>set('smtp_username', 'noreply.fflch@usp.br')->save();
-    $smtp_settings>set('smtp_password', $senha)->save();
-    $smtp_settings>set('smtp_host', 'smtp.gmail.com')->save();
-    $smtp_settings>set('smtp_port', '587')->save();
+    $smtp_settings>set('smtp_username', 'noreply.fflch@usp.br');
+
+    $filename = '/var/aegir/.email.txt';
+    if (file_exists($filename)) {
+        $senha = file_get_contents($filename);
+        $smtp_settings>set('smtp_password', $senha);
+    }
+
+    $smtp_settings>set('smtp_host', 'smtp.gmail.com');
+    $smtp_settings>set('smtp_port', '587');
     $smtp_settings>set('smtp_protocol', 'tls')->save();
   }
 
   private function user1(){
-    $senha = file_get_contents("/var/aegir/.user1.txt");
     $user = \Drupal\user\Entity\User::load(1);
     $user->setUsername('fflch');
-    $user->setPassword($senha);
+
+    $filename = '/var/aegir/.user1.txt';
+    if (file_exists($filename)) {
+        $senha = file_get_contents($filename);
+        $user->setPassword($senha);
+    }
     $user->save();
   }
 

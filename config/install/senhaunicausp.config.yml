@@ -1,8 +1,0 @@
-key_id: fflch_sti
-secret_key: __senha_unica_secret_key__
-callback_id: '233'
-numeros_usp: "2517070,\r\n3426504,\r\n5385361"
-default_role: fflch
-numeros_usp_service: 0
-endpoint: ''
-apikey: ''

@@ -24,7 +24,12 @@ class LoginController extends ControllerBase {
         'base_uri' => 'https://sites.fflch.usp.br/',
     ]);
     
-    $secretkey = file_get_contents("/var/aegir/.secretkey.txt");
+    $filename = '/var/aegir/.secretkey.txt';
+    if (file_exists($filename)) {
+        $secretkey = file_get_contents($filename);
+    } else {
+        $secretkey = '123';
+    }
 
     $res = $client->request('GET',"/check/",
         ['query' => ['secretkey'  => $secretkey,
