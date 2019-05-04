@@ -49,7 +49,7 @@ class Configs implements ContainerInjectionInterface {
   /*******************************************************************/
   /** Daqui para baixo estão as configurações obrigatórias na FFLCH **/
   public function doConfig() {
-    $this->idiomas();
+#    $this->idiomas();
     $this->captcha();
     $this->user1();
     $this->permissions();
@@ -80,8 +80,19 @@ class Configs implements ContainerInjectionInterface {
   }
 
   private function captcha() {
-    $captcha_settings = $this->configFactory->getEditable('captcha.settings');
-    $captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
+    //$captcha_settings = $this->configFactory->getEditable('captcha.settings');
+    //$captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
+
+
+    $a = \Drupal::service('config.factory')->getEditable('captcha.settings');
+    
+
+    if($a->get('default_challenge') == 'image_captcha/Image') {
+        echo file_put_contents("/tmp/test.txt",$a->get('default_challenge'));
+        $a->set('default_challenge', 'aa',1);
+        $a->save();
+        echo file_put_contents("/tmp/test.txt",$a->get('default_challenge'));
+    }
   }
 
   private function smtp() {
