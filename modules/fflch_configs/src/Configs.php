@@ -2,9 +2,9 @@
 
 namespace Drupal\fflch_configs;
 
-use Drupal\language\ConfigurableLanguageManagerInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\language\Entity\ConfigurableLanguage;
+
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -25,7 +25,6 @@ class Configs implements ContainerInjectionInterface {
     ConfigFactoryInterface $configFactory,
     ModuleHandlerInterface $moduleHandler,
     LanguageManagerInterface $languageManager,
-#    ConfigurableLanguageManagerInterface $languageManager,
     StateInterface $state
   ) {
     $this->configFactory = $configFactory;
@@ -48,12 +47,12 @@ class Configs implements ContainerInjectionInterface {
    
   /*******************************************************************/
   /** Daqui para baixo estão as configurações obrigatórias na FFLCH **/
-  public function doConfig() {
+  public function doConfig(){
 #    $this->idiomas();
     $this->captcha();
     $this->user1();
     $this->permissions();
-#    $this->smtp();
+    $this->smtp();
   }
 
   private function idiomas(){
@@ -63,7 +62,6 @@ class Configs implements ContainerInjectionInterface {
       if (isset($languages[$langcode])) {
         continue;
       }
-      // TODO: Esse parte não está funcionando
       //$language = ConfigurableLanguage::createFromLangcode($langcode);
       //$language->save();
     }
@@ -79,39 +77,29 @@ class Configs implements ContainerInjectionInterface {
     $this->languageManager->reset();
   }
 
-  private function captcha() {
-    //$captcha_settings = $this->configFactory->getEditable('captcha.settings');
-    //$captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
-
-
-    $a = \Drupal::service('config.factory')->getEditable('captcha.settings');
-    
-
-    if($a->get('default_challenge') == 'image_captcha/Image') {
-        echo file_put_contents("/tmp/test.txt",$a->get('default_challenge'));
-        $a->set('default_challenge', 'aa',1);
-        $a->save();
-        echo file_put_contents("/tmp/test.txt",$a->get('default_challenge'));
-    }
+  private function captcha(){
+    $captcha_settings = \Drupal::service('config.factory')->getEditable('captcha.settings');
+    $captcha_settings->set('default_challenge', 'image_captcha/Image')->save();
   }
 
-  private function smtp() {
-    
-    $smtp_settings = $this->configFactory->getEditable('smtp.settings');
-    $smtp_settings>set('smtp_username', 'noreply.fflch@usp.br');
+  private function smtp(){
+
+    $smtp_settings = \Drupal::service('config.factory')->getEditable('smtp.settings');
+    $smtp_settings->set('smtp_username', 'noreply.fflch@usp.br');
 
     $filename = '/var/aegir/.email.txt';
     if (file_exists($filename)) {
         $senha = file_get_contents($filename);
-        $smtp_settings>set('smtp_password', $senha);
+        $smtp_settings->set('smtp_password', $senha);
     }
 
-    $smtp_settings>set('smtp_host', 'smtp.gmail.com');
-    $smtp_settings>set('smtp_port', '587');
-    $smtp_settings>set('smtp_protocol', 'tls')->save();
+    $smtp_settings->set('smtp_host', 'smtp.gmail.com');
+    $smtp_settings->set('smtp_port', '587');
+    $smtp_settings->set('smtp_protocol', 'tls')->save();
   }
 
   private function user1(){
+
     $user = \Drupal\user\Entity\User::load(1);
     $user->setUsername('fflch');
 
@@ -174,7 +162,7 @@ class Configs implements ContainerInjectionInterface {
       $role->save(); 
     }
 
-    // Remove permissões indevidas
+    // Remove permissões indevidas na role fflch
     $currents = $role->getPermissions();
     foreach($currents as $p){
       if (!in_array($p, $perms)) {

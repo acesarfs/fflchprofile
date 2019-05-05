@@ -70,7 +70,6 @@ install:
   - cpf
 #### nossos módulos
   - loginbytoken
-  - fflch_configs
 themes:
   - fflch_aegan
 #  - fflch_paxton
