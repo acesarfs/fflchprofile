@@ -12,6 +12,7 @@ selection_criteria:
     id: node_type
     bundles:
       page: page
+      book: book
     negate: false
     context_mapping:
       node: node

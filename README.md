@@ -5,19 +5,19 @@
 Há dois tipos de configurações: instalação e sincronização.
 As configurações de instalação são carregadas assim que o site é criado
 e estão definidas em arquivos *.yml* no diretório *fflchprofile/config/install*.
+
 As configurações de sinconização são rodadas sempre no cron e estão
-definidas na classe *Configs.php* do módulo *fflch_configs*.
+em *modules/fflch_configs/config/mandatory*.
 
 Passos para fazer modificações no site modelo:
 
  - Identificar os arquivos yml que executam a modificação
- - Salvar e commitar esses arquivos na pasta *fflchprofile/config/install* para aplicação em novos sites 
- - Nos sites existentes, deve-se aplicar retroativamente as novas configurações salvando os arquivos *.yml* correspondentes em um diretório, ex. web/aplicando, e executando:
+ - Salvar e commitar esses arquivos na pasta *modules/fflch_configs/config/mandatory*
 
-    ./vendor/bin/drush cim --partial --source='aplicando'
+ - Se quiser testar as configurações antes de mandar para a produção, coloque-a em um pasta,
+por exemplo, /tmp/novas/.yml e rode:
 
-<b>Atenção</b>: Delete a pasta web/aplicando depois de aplicado. Não rodamos o comando acima diretamente na pasta *fflchprofile/config/install*, pois há configurações de início que não queremos que retornem, por exemplo, as posições dos blocos do site modelo.
- - Por fim, se for necessário, crie um método PHP em *Configs.php* para garantir o estado dessa configuração
+    ./vendor/bin/drush cim --partial --source='/tmp/novas'
 
 ## Configurações:
 
