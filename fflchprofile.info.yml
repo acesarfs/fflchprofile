@@ -60,6 +60,7 @@ install:
   - webform_attachment
   - webform_scheduled_email
   - theme_permission
+  - webform_node
   - editor_advanced_link
   - editor_file
   - ckeditor_font
