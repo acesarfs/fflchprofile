@@ -83,7 +83,7 @@ class InstallHelper implements ContainerInjectionInterface {
    */
   public function importContent() {
     $this->importPages();
-    $this->importBlockContent();
+    #$this->importBlockContent();
 
     // defina a página importada como inicial
     $system_site = \Drupal::configFactory()->getEditable('system.site');
