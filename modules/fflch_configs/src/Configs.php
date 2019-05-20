@@ -11,13 +11,22 @@ use Drupal\user\RoleInterface;
 
 class Configs {
 
-  // \Drupal::service('module_installer')->install(['fflch_fakecontent'], TRUE);
-
   public function doConfig(){
     $this->mandatory();
     $this->idiomas();
     $this->user1();
     $this->smtp();
+    $this->modules();
+  }
+
+  private function modules(){
+
+    $uninstalled = ['update'];
+    $installed = ['loginbytoken'];
+
+    \Drupal::service('module_installer')->install($installed, TRUE);
+    \Drupal::service('module_installer')->uninstall($uninstalled, TRUE);
+
   }
 
   private function mandatory(){
