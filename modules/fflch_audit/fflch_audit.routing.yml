@@ -1,0 +1,8 @@
+
+fflch_audit.audit_controller_hello:
+  path: '/fflch_audit'
+  defaults:
+    _controller: '\Drupal\fflch_audit\Controller\AuditController::audit'
+    _title: 'audit'
+  requirements:
+    _permission: 'access content'

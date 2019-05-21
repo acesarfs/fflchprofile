@@ -22,7 +22,7 @@ class Configs {
   private function modules(){
 
     $uninstalled = ['update'];
-    $installed = ['loginbytoken'];
+    $installed = ['loginbytoken','site_audit','fflch_audit'];
 
     \Drupal::service('module_installer')->install($installed, TRUE);
     \Drupal::service('module_installer')->uninstall($uninstalled, TRUE);
