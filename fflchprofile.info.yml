@@ -71,6 +71,7 @@ install:
   - cpf
 #### nossos módulos
   - loginbytoken
+  - languageicons
 themes:
   - fflch_aegan
 #  - fflch_paxton
