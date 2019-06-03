@@ -45,6 +45,8 @@ install:
   - language
   - locale
   - book
+  - config_translation
+  - content_translation
 #### módulos contrib usados na FFLCH
   - captcha
   - image_captcha
@@ -69,9 +71,9 @@ install:
   - collapse_text
   - config_perms
   - cpf
+  - languageicons
 #### nossos módulos
   - loginbytoken
-  - languageicons
 themes:
   - fflch_aegan
 #  - fflch_paxton
