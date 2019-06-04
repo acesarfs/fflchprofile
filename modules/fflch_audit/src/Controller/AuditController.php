@@ -20,7 +20,8 @@ class AuditController extends ControllerBase {
     $reportDefinitions = $reportManager->getDefinitions();
 
     //var_dump(\Drupal::config('site_audit.settings')->get('reports'));
-    $labels = ['codebase','database'];
+    //$labels = ['codebase','database'];
+    $labels = ['database'];
 
     $reports = [];
     foreach ($labels as $label) {
@@ -32,7 +33,7 @@ class AuditController extends ControllerBase {
       $reports[] = $reportManager->createInstance($reportDefinition['id']);
     }
     */
-    
+
     $reports_json = [];
     foreach($reports as $report){
         $report_json = array(
