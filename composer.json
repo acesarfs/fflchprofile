@@ -48,7 +48,7 @@
 
   "require": {
         "drupal/ctools": "3.1",
-        "drupal/site_audit": "dev-fflch",
+        "drupal/site_audit": "3.x-dev",
         "drupal/asset_injector": "2.4",
         "drupal/captcha": "1.0-beta1",
         "drupal/ckeditor_font": "dev-master",
