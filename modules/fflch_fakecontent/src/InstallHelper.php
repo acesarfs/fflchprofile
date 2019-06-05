@@ -85,18 +85,18 @@ class InstallHelper implements ContainerInjectionInterface {
     $this->importPages();
     #$this->importBlockContent();
 
-    // defina a página importada como inicial
-    $system_site = \Drupal::configFactory()->getEditable('system.site');
-    $system_site->set('page.front', '/sobre')->save(TRUE);
-
     // Cria um botão de exemplo no menu
     $menu_link = MenuLinkContent::create([
-      'title' => "Página Inicial",
-      'link' => ['uri' => 'internal:/node/1'],
+      'title' => "Home",
+      'link' => ['uri' => "internal:/"],
       'menu_name' => 'main',
       'expanded' => TRUE,
     ]);
     $menu_link->save();
+
+    // defina a página importada como inicial
+    $system_site = \Drupal::configFactory()->getEditable('system.site');
+    $system_site->set('page.front', '/node/1')->save(TRUE);
   }
 
   /**
@@ -109,7 +109,15 @@ class InstallHelper implements ContainerInjectionInterface {
     $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
     $fflch_image = $this->createFileEntity($module_path . '/default_content/fflch.jpg');
 
-    $file = $module_path .'/default_content/frontpage.html';
+    $title = [
+        'pt-br' => 'Faculdade de Filosofia, Letras e Ciências Humanas',
+        'en' => 'The Faculty of Philosophy, Languages and Literature, and Human Sciences',
+        'es' => 'La Facultad de Filosofía, Letras y Ciencias Humanas de la Universidad de São Paulo',
+        'fr' => 'La Faculté de Philosophie, Lettres et Sciences Humaines ',    
+    ];
+
+    // pt-br frontpage
+    $file = $module_path .'/default_content/frontpage_pt.html';
     $body = file_get_contents($file);
     $body = str_replace("__fflch_image__", $fflch_image, $body);
     $uuids = [];
@@ -117,22 +125,36 @@ class InstallHelper implements ContainerInjectionInterface {
     // Prepare content.
     $values = [
         'type' => 'page',
-        'title' => 'Sobre',
+        'title' => $title['pt-br'],
         'moderation_state' => 'published',
+        'langcode' => 'pt-br',
+        'body' => [['value' => $body, 'format' => 'full_html']],
+        'uid' => 1
     ];
-
-    // Set Body Field.
-    $values['body'] = [['value' => $body, 'format' => 'full_html']];
-     
-    // Set article author.
-    $values['uid'] = 1;
-       
-    // Create Node.
-    $node = $this->entityTypeManager->getStorage('node')->create($values);
-    $node->save();
-    $uuids[$node->uuid()] = 'node';
       
+    // Create Node.
+    $node = $this->entityTypeManager->getStorage('node')->create($values);   
+    $node->save();
+
+    // other languages
+    $langcodes = ['en','es','fr'];
+    foreach ($langcodes as $langcode) {
+        $file = $module_path ."/default_content/frontpage_{$langcode}.html";
+        $body = file_get_contents($file);
+        $body = str_replace("__fflch_image__", $fflch_image, $body);
+        $values = [
+            'title' => $title[$langcode],
+            'moderation_state' => 'published',
+            'uid' => 1,
+            'body' => [['value' => $body, 'format' => 'full_html']],
+        ];
+        $node->addTranslation($langcode, $values)->save();
+    }
+
+    $uuids[$node->uuid()] = 'node';     
     $this->storeCreatedContentUuids($uuids);
+
+
     
     return $this;
   }
