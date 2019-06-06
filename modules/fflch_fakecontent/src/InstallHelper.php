@@ -83,7 +83,6 @@ class InstallHelper implements ContainerInjectionInterface {
    */
   public function importContent() {
     $this->importPages();
-    #$this->importBlockContent();
 
     // Cria um botão de exemplo no menu
     $menu_link = MenuLinkContent::create([
@@ -99,34 +98,6 @@ class InstallHelper implements ContainerInjectionInterface {
     $system_site->set('page.front', '/node/1')->save(TRUE);
   }
 
-  protected function fflchAegan() {
-
-    $fflch_aegan = \Drupal::service('config.factory')->getEditable('fflch_aegan');
-    $fflch_aegan
-        ->set('slideshow_display', '1')
-        ->set('slideshow_animation', 'slide')
-        ->set('slideshow_animation_speed', '600')
-        ->set('slideshow_slide_speed', '7000')
-        ->set('slideshow_count', '3')
-        ->set('slideshow_visiblity', '<front>')
-        ->set('slide_url_1', '')
-        ->set('slide_description_1', '')
-        ->set('slide_image_1', '')
-        ->set('slide_url_2', '')
-        ->set('slide_description_2', '')
-        ->set('slide_image_2', '')
-        ->set('slide_url_3', '')
-        ->set('slide_description_3', '')
-        ->set('slide_image_3', '')
-        ->save();
-
-    $aegan = \Drupal::service('config.factory')->getEditable('aegan');
-    $aegan
-        ->set('slideshow_display', '0')
-        ->save();
-
-  }
-
   /**
    * Imports pages.
    *
@@ -139,9 +110,9 @@ class InstallHelper implements ContainerInjectionInterface {
 
     $title = [
         'pt-br' => 'Faculdade de Filosofia, Letras e Ciências Humanas',
-        'en' => 'The Faculty of Philosophy, Languages and Literature, and Human Sciences',
-        'es' => 'La Facultad de Filosofía, Letras y Ciencias Humanas de la Universidad de São Paulo',
-        'fr' => 'La Faculté de Philosophie, Lettres et Sciences Humaines ',    
+        'en' => 'Faculty of Philosophy, Languages and Literature, and Human Sciences',
+        'es' => 'Facultad de Filosofía, Letras y Ciencias Humanas',
+        'fr' => 'Faculté de Philosophie, Lettres et Sciences Humaines ',    
     ];
 
     // pt-br frontpage
@@ -182,43 +153,6 @@ class InstallHelper implements ContainerInjectionInterface {
     $uuids[$node->uuid()] = 'node';     
     $this->storeCreatedContentUuids($uuids);
 
-
-    
-    return $this;
-  }
-
-  /**
-   * Imports block content entities.
-   *
-   * @return $this
-   */
-  protected function importBlockContent() {
-    $module_path = $this->moduleHandler->getModule('fflch_fakecontent')->getPath();
-    $logo_image = $this->createFileEntity($module_path . '/default_content/logo.png');
-    $usp_image = $this->createFileEntity($module_path . '/default_content/usp.png');
-
-    $file = $module_path .'/default_content/block.logo.html';
-    $body = file_get_contents($file);
-    $body = str_replace("__logo_image__", $logo_image, $body);
-    $body = str_replace("__usp_image__", $usp_image, $body);
-
-    $block = [
-        'uuid' => '9aadf4a1-ded6-4017-a10d-a5e043396edf',
-        'info' => 'logo',
-        'type' => 'basic',
-        'title' => [
-          'value' => 'logo',
-         ],
-        'body' => [
-          'value' => $body,
-          'format' => 'full_html'
-         ]
-    ];
-
-    // Create block content.
-    $block_content = $this->entityTypeManager->getStorage('block_content')->create($block);
-    $block_content->save();
-    $this->storeCreatedContentUuids([$block_content->uuid() => 'block_content']);
     return $this;
   }
 
