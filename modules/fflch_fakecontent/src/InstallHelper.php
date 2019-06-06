@@ -95,7 +95,6 @@ class InstallHelper implements ContainerInjectionInterface {
 
     // defina a página importada como inicial
     $system_site = \Drupal::configFactory()->getEditable('system.site');
-    $system_site->set('name', 'Site Modelo')->save(TRUE);
     $system_site->set('page.front', '/node/1')->save(TRUE);
   }
 
