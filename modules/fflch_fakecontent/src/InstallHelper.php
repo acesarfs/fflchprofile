@@ -99,6 +99,34 @@ class InstallHelper implements ContainerInjectionInterface {
     $system_site->set('page.front', '/node/1')->save(TRUE);
   }
 
+  protected function fflchAegan() {
+
+    $fflch_aegan = \Drupal::service('config.factory')->getEditable('fflch_aegan');
+    $fflch_aegan
+        ->set('slideshow_display', '1')
+        ->set('slideshow_animation', 'slide')
+        ->set('slideshow_animation_speed', '600')
+        ->set('slideshow_slide_speed', '7000')
+        ->set('slideshow_count', '3')
+        ->set('slideshow_visiblity', '<front>')
+        ->set('slide_url_1', '')
+        ->set('slide_description_1', '')
+        ->set('slide_image_1', '')
+        ->set('slide_url_2', '')
+        ->set('slide_description_2', '')
+        ->set('slide_image_2', '')
+        ->set('slide_url_3', '')
+        ->set('slide_description_3', '')
+        ->set('slide_image_3', '')
+        ->save();
+
+    $aegan = \Drupal::service('config.factory')->getEditable('aegan');
+    $aegan
+        ->set('slideshow_display', '0')
+        ->save();
+
+  }
+
   /**
    * Imports pages.
    *
