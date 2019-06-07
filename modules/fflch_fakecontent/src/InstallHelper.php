@@ -10,6 +10,7 @@ use Drupal\Core\State\StateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\language\Entity\ConfigurableLanguage;
 
 /**
  * Defines a helper class for importing default content.
@@ -82,6 +83,7 @@ class InstallHelper implements ContainerInjectionInterface {
    * Imports default contents.
    */
   public function importContent() {
+    $this->idiomas();
     $this->importPages();
 
     // Cria um botão de exemplo no menu
@@ -96,6 +98,19 @@ class InstallHelper implements ContainerInjectionInterface {
     // defina a página importada como inicial
     $system_site = \Drupal::configFactory()->getEditable('system.site');
     $system_site->set('page.front', '/node/1')->save(TRUE);
+  }
+
+  protected function idiomas(){
+    $langcodes = ['en','pt-br','es','fr'];
+    foreach ($langcodes as $langcode) {
+      $languages = \Drupal::languageManager()->getLanguages();
+      if (isset($languages[$langcode])) {
+        continue;
+      }
+      $language = ConfigurableLanguage::createFromLangcode($langcode);
+      $language->save();
+
+    }
   }
 
   /**

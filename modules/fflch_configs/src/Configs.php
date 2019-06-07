@@ -84,7 +84,7 @@ class Configs {
   }
 
   private function idiomas(){
-    $langcodes = ['en','pt-br','es','fr'];
+    $langcodes = ['en','pt-br'];
     foreach ($langcodes as $langcode) {
       $languages = \Drupal::languageManager()->getLanguages();
       if (isset($languages[$langcode])) {
