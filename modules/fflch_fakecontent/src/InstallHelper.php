@@ -83,7 +83,6 @@ class InstallHelper implements ContainerInjectionInterface {
    * Imports default contents.
    */
   public function importContent() {
-    $this->idiomas();
     $this->importPages();
 
     // Cria um botão de exemplo no menu
@@ -98,19 +97,6 @@ class InstallHelper implements ContainerInjectionInterface {
     // defina a página importada como inicial
     $system_site = \Drupal::configFactory()->getEditable('system.site');
     $system_site->set('page.front', '/node/1')->save(TRUE);
-  }
-
-  protected function idiomas(){
-    $langcodes = ['en','pt-br','es','fr'];
-    foreach ($langcodes as $langcode) {
-      $languages = \Drupal::languageManager()->getLanguages();
-      if (isset($languages[$langcode])) {
-        continue;
-      }
-      $language = ConfigurableLanguage::createFromLangcode($langcode);
-      $language->save();
-
-    }
   }
 
   /**
@@ -151,7 +137,8 @@ class InstallHelper implements ContainerInjectionInterface {
     $node->save();
 
     // other languages
-    $langcodes = ['en','es','fr'];
+    //$langcodes = ['en','es','fr'];
+    $langcodes = ['en'];
     foreach ($langcodes as $langcode) {
         $file = $module_path ."/default_content/frontpage_{$langcode}.html";
         $body = file_get_contents($file);
