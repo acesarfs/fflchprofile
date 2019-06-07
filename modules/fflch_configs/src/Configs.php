@@ -56,6 +56,7 @@ class Configs {
       'languageicons',
       'site_audit',
       'loginbytoken',
+      'csv_importer',
     ];
 
     \Drupal::service('module_installer')->install($installed, TRUE);
