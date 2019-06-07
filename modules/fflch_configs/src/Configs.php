@@ -22,12 +22,41 @@ class Configs {
   private function modules(){
 
     $uninstalled = ['update'];
-    $installed = ['loginbytoken',
-                  'site_audit',
-                  'fflch_audit',
-                  'content_translation',
-                  'config_translation',
-                  'languageicons'];
+    $installed = [
+    #### módulos core usados na FFLCH
+      'language',
+      'locale',
+      'book',
+      'config_translation',
+      'content_translation',
+    #### módulos contrib usados na FFLCH
+      'captcha',
+      'image_captcha',
+      'smtp',
+      'entity',
+      'entity_clone',
+      'asset_injector',
+      'imce',
+      'google_analytics',
+      'pathauto',
+      'webform',
+      'webform_ui',
+      'webform_attachment',
+      'webform_scheduled_email',
+      'theme_permission',
+      'webform_node',
+      'editor_advanced_link',
+      'editor_file',
+      'ckeditor_font',
+      'conditional_fields',
+      'ctools',
+      'collapse_text',
+      'config_perms',
+      'cpf',
+      'languageicons',
+      'site_audit',
+      'loginbytoken',
+    ];
 
     \Drupal::service('module_installer')->install($installed, TRUE);
     \Drupal::service('module_installer')->uninstall($uninstalled, TRUE);
