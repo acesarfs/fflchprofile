@@ -54,7 +54,6 @@ class Configs {
       'config_perms',
       'cpf',
       'languageicons',
-      'site_audit',
       'loginbytoken',
       'csv_importer',
     ];
