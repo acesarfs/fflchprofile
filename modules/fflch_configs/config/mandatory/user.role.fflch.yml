@@ -55,15 +55,23 @@ permissions:
   - 'translate page node'
   - 'translate webform node'
   - 'update content translations'
-
 # Temas liberados
   - 'administer themes'
   - 'administer themes fflch_aegan'
-#  - 'administer themes fflch_jethro'
-#  - 'administer themes fflch_nexus'
-#  - 'administer themes fflch_paxton'
-# webform
+# Webform
   - 'administer webform'
+  - 'edit webform source'
 # Revisões
   - 'revert all revisions'
   - 'view all revisions'
+# Taxonomia
+  - 'access taxonomy overview'
+  - 'administer taxonomy_term display'
+  - 'administer taxonomy_term fields'
+  - 'administer taxonomy_term form display'
+  - 'administer taxonomy'
+#Contact
+  - 'administer contact forms'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'manage contact form emails'

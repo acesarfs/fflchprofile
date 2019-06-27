@@ -13,9 +13,7 @@ install:
   - ckeditor
   - color
   - config
-#  - comment
   - contextual
-#  - contact
   - menu_link_content
   - datetime
   - block_content
@@ -74,11 +72,11 @@ install:
   - languageicons
 #### nossos módulos
   - loginbytoken
+### contact
+  - contact
+  - contact_storage
+  - contact_emails
 themes:
   - fflch_aegan
   - seven
-#  - fflch_paxton
-#  - fflch_nexus
-#  - fflch_jethro
-#  - bartik
 
