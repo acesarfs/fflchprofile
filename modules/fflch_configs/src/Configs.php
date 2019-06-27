@@ -56,6 +56,9 @@ class Configs {
       'languageicons',
       'loginbytoken',
       'csv_importer',
+      'contact',
+      'contact_storage',
+      'contact_emails',
     ];
 
     \Drupal::service('module_installer')->install($installed, TRUE);
