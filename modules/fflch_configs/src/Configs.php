@@ -48,6 +48,7 @@ class Configs {
       'editor_advanced_link',
       'editor_file',
       'ckeditor_font',
+      'colorbutton',
       'conditional_fields',
       'ctools',
       'collapse_text',

@@ -66,6 +66,7 @@ settings:
             - Font
             - FontSize
             - TextColor
+            - BGColor
             - SpecialChar
         -
           name: Alinhamento
@@ -75,10 +76,13 @@ settings:
             - JustifyRight
             - JustifyBlock
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: ''
+    language:
+      language_list: un
+    font:
+      font_names: ''
+      font_sizes: ''
     colorbutton:
       colors: ''
 image_upload:
